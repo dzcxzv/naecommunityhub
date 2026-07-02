@@ -55,7 +55,7 @@ export function Navbar({ page, setPage, setViewProfileId, chatUnread }: NavbarPr
   };
 
   return (
-    <nav className="sticky top-0 z-30" style={{ background: 'rgba(11,13,20,0.85)', backdropFilter: 'blur(24px)', WebkitBackdropFilter: 'blur(24px)', borderBottom: '1px solid rgba(255,255,255,0.06)' }}>
+    <nav className="sticky top-0 z-30 nav-bar" style={{ background: 'rgba(11,13,20,0.85)', backdropFilter: 'blur(24px)', WebkitBackdropFilter: 'blur(24px)', borderBottom: '1px solid rgba(255,255,255,0.06)' }}>
       <div className="max-w-7xl mx-auto px-6 h-[60px] grid grid-cols-[200px_1fr_200px] items-center gap-4">
 
         {/* Left: Logo */}
@@ -94,7 +94,9 @@ export function Navbar({ page, setPage, setViewProfileId, chatUnread }: NavbarPr
 
         {/* Right: Weather + Bell + Konto pill */}
         <div className="flex items-center justify-end gap-2">
-          <WeatherBar />
+          <div className="hidden lg:block">
+            <WeatherBar />
+          </div>
 
           {/* Bell */}
           <div className="relative">
@@ -121,7 +123,7 @@ export function Navbar({ page, setPage, setViewProfileId, chatUnread }: NavbarPr
             >
               <div className="relative">
                 {profile && <Avatar username={profile.username} avatarUrl={profile.avatar_url} size="xs" />}
-                {profile && <span className="absolute -bottom-0.5 -right-0.5"><StatusDot status={profile.online_status} size="sm" showSymbol /></span>}
+                {profile && <span className="absolute -bottom-0.5 -right-0.5 translate-x-0.5 translate-y-0.5"><StatusDot status={profile.online_status} size="sm" showSymbol /></span>}
               </div>
               <span className="hidden sm:block max-w-[80px] truncate">{profile?.username ?? 'Konto'}</span>
             </button>

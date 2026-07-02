@@ -5,7 +5,7 @@ import { useAuth } from '../lib/auth';
 import { Avatar } from '../components/Avatar';
 import type { GameRoom, Profile } from '../lib/types';
 
-const WORDS = ['cat', 'house', 'tree', 'sun', 'moon', 'car', 'pizza', 'guitar', 'robot', 'rocket', 'flower', 'butterfly', 'umbrella', 'sandwich', 'telescope'];
+const WORDS = ['kot', 'dom', 'drzewo', 'słońce', 'księżyc', 'samochód', 'pizza', 'gitara', 'robot', 'rakieta', 'kwiat', 'motyl', 'parasol', 'kanapka', 'teleskop', 'ptak', 'ryba', 'samolot', 'pociąg', 'statek', 'góry', 'rzeka', 'plaża', 'las', 'most', 'zamek', 'wieża', 'gwiazda', 'serce', 'tęcza'];
 
 interface Member { user_id: string; profile?: Profile; }
 interface ChatMsg { user_id: string; username: string; content: string; correct?: boolean; timestamp: number; }
@@ -80,14 +80,16 @@ export function PictionaryGame({ room, onProfileClick }: { room: GameRoom; onPro
     if (chatEndRef.current) chatEndRef.current.scrollIntoView({ behavior: 'smooth' });
   }, [chat]);
 
-  // Canvas drawing
+  // Canvas drawing - fixed cursor alignment
   const getPos = (e: React.MouseEvent | React.TouchEvent) => {
     const canvas = canvasRef.current;
     if (!canvas) return null;
     const rect = canvas.getBoundingClientRect();
+    const scaleX = canvas.width / rect.width;
+    const scaleY = canvas.height / rect.height;
     const clientX = 'touches' in e ? e.touches[0].clientX : e.clientX;
     const clientY = 'touches' in e ? e.touches[0].clientY : e.clientY;
-    return { x: clientX - rect.left, y: clientY - rect.top };
+    return { x: (clientX - rect.left) * scaleX, y: (clientY - rect.top) * scaleY };
   };
 
   const startDraw = (e: React.MouseEvent | React.TouchEvent) => {

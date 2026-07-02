@@ -75,7 +75,7 @@ export function MusicPlayer() {
   }
 
   const urlInputPanel = showUrlInput && (
-    <div className="fixed bottom-20 right-6 z-50 w-80 max-w-[90vw] widget p-4 animate-slide-up" style={{ borderRadius: '1rem' }}>
+    <div className="fixed bottom-20 left-1/2 -translate-x-1/2 z-50 w-80 max-w-[90vw] widget p-4 animate-slide-up" style={{ borderRadius: '1rem' }}>
       <div className="flex items-center justify-between mb-3">
         <h3 className="font-semibold text-sm text-white">Dodaj muzykę</h3>
         <button onClick={() => setShowUrlInput(false)} className="text-slate-400 hover:text-white"><X className="w-4 h-4" /></button>
@@ -94,8 +94,8 @@ export function MusicPlayer() {
     <>
       {urlInputPanel}
 
-      {/* All states rendered in the same fixed bottom-right container — no jumping */}
-      <div className="fixed bottom-4 right-6 z-40 flex flex-col items-end gap-2 max-w-[calc(100vw-3rem)]">
+      {/* All states rendered centered at the bottom — no jumping */}
+      <div className="fixed bottom-4 left-1/2 -translate-x-1/2 z-40 flex flex-col items-center gap-2 max-w-[calc(100vw-2rem)]">
         {!showBar || !currentTrack ? (
           /* Floating music pill */
           <button

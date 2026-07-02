@@ -57,10 +57,16 @@ export function SnakeGame({ onExit, onSaveScore }: Props) {
     const handler = (e: KeyboardEvent) => {
       if (gameState !== 'playing') return;
       const d = dirRef.current;
+      // Arrow keys
       if (e.key === 'ArrowUp' && d.y === 0) setDir({ x: 0, y: -1 });
       if (e.key === 'ArrowDown' && d.y === 0) setDir({ x: 0, y: 1 });
       if (e.key === 'ArrowLeft' && d.x === 0) setDir({ x: -1, y: 0 });
       if (e.key === 'ArrowRight' && d.x === 0) setDir({ x: 1, y: 0 });
+      // WASD keys
+      if ((e.key === 'w' || e.key === 'W') && d.y === 0) setDir({ x: 0, y: -1 });
+      if ((e.key === 's' || e.key === 'S') && d.y === 0) setDir({ x: 0, y: 1 });
+      if ((e.key === 'a' || e.key === 'A') && d.x === 0) setDir({ x: -1, y: 0 });
+      if ((e.key === 'd' || e.key === 'D') && d.x === 0) setDir({ x: 1, y: 0 });
     };
     window.addEventListener('keydown', handler);
     return () => window.removeEventListener('keydown', handler);
@@ -80,7 +86,7 @@ export function SnakeGame({ onExit, onSaveScore }: Props) {
       {gameState === 'idle' && (
         <div className="py-8">
           <button onClick={start} className="px-6 py-3 rounded-xl gradient-bg gradient-bg-hover text-white font-medium">Start</button>
-          <p className="text-xs text-slate-500 mt-3">Użyj strzałek lub przycisków</p>
+          <p className="text-xs text-slate-500 mt-3">Użyj strzałek, WASD lub przycisków</p>
         </div>
       )}
 

@@ -59,7 +59,7 @@ export function StatusDot({ status, size = 'sm', showSymbol = false }: StatusDot
   const Symbol = cfg.symbol;
   const sz = size === 'sm' ? 'w-3.5 h-3.5 p-0.5' : size === 'md' ? 'w-5 h-5 p-1' : 'w-6 h-6 p-1';
   return (
-    <div className={`${cfg.color} ${sz} rounded-full flex items-center justify-center ring-2 ring-[#0a0a14] text-white shrink-0`}>
+    <div className={`${cfg.color} ${sz} rounded-full flex items-center justify-center ring-2 ring-[#0b0d14] text-white shrink-0`}>
       {showSymbol && <Symbol />}
     </div>
   );

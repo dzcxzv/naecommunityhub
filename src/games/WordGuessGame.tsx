@@ -6,7 +6,7 @@ interface Props {
   onSaveScore: (score: number) => void;
 }
 
-const WORDS = ['gaming', 'music', 'cinema', 'rocket', 'forest', 'puzzle', 'wizard', 'island', 'castle', 'planet', 'dragon', 'silver', 'galaxy', 'thunder', 'crystal'];
+const WORDS = ['gierka', 'muzyka', 'kino', 'rakieta', 'las', 'zagadka', 'czarodziej', 'wyspa', 'zamek', 'planeta', 'smok', 'srebro', 'galaktyka', 'grzmot', 'kryształ', 'komputer', 'program', 'internet', 'telefon', 'tablet', 'książka', 'obraz', 'sport', 'podróż', 'przygoda'];
 
 export function WordGuessGame({ onExit, onSaveScore }: Props) {
   const [word, setWord] = useState('');

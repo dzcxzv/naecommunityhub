@@ -49,11 +49,15 @@ export function CommunityPage({ onProfileClick }: { onProfileClick: (id: string)
 
   const createPost = async () => {
     if (!profile || !postText.trim()) return;
-    const { data } = await supabase
+    const { data, error } = await supabase
       .from('posts')
-      .insert({ user_id: profile.id, content: postText.trim(), image_url: imageUrl || null })
+      .insert({ content: postText.trim(), image_url: imageUrl || null })
       .select('*, profile:profiles!user_id(username, avatar_url)')
       .single();
+    if (error) {
+      console.error('Failed to create post:', error.message);
+      return;
+    }
     if (data) {
       setPosts(prev => [data as unknown as Post, ...prev]);
       setPostText('');
@@ -124,7 +128,7 @@ export function CommunityPage({ onProfileClick }: { onProfileClick: (id: string)
               <button key={u.id} onClick={() => onProfileClick(u.id)} className="flex items-center gap-3 p-3 rounded-xl glass-dark border border-white/10 hover:border-pink-400/30 transition-colors text-left">
                 <div className="relative">
                   <Avatar username={u.username} avatarUrl={u.avatar_url} size="md" />
-                  <div className="absolute -bottom-0.5 -left-0.5"><StatusDot status={u.online_status} size="sm" showSymbol /></div>
+                  <div className="absolute -bottom-0.5 -left-0.5 translate-x-[-2px] translate-y-[2px]"><StatusDot status={u.online_status} size="sm" showSymbol /></div>
                 </div>
                 <div className="min-w-0">
                   <p className="font-medium text-slate-200 truncate">{u.username}</p>
